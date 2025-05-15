@@ -1,0 +1,17 @@
+.timer {
+  font-size: 12px;
+  font-weight: bold;
+  color: #204060;
+  margin-top: 5px;
+}
+
+.expired {
+  color: #d44;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
