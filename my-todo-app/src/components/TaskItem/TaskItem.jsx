@@ -1,38 +1,44 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { toggleTask, deleteTask, setEditingTaskId } from '../../store/todoSlice';
-import TaskTimer from '../TaskTimer/TaskTimer';
-import ConfirmPopup from '../ConfirmPopup/ConfirmPopup';
-import { formatDate } from '../../utils/dateUtils';
-import styles from './TaskItem.module.css';
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { toggleTask, deleteTask, setEditingTaskId } from '../../store/todoSlice'
+import TaskTimer from '../TaskTimer/TaskTimer'
+import ConfirmPopup from '../ConfirmPopup/ConfirmPopup'
+import { formatDate } from '../../utils/dateUtils'
+import styles from './TaskItem.module.css'
 
 const TaskItem = ({ task }) => {
-  const dispatch = useDispatch();
-  const [showConfirm, setShowConfirm] = useState(false);
+  const dispatch = useDispatch()
+  const [showConfirm, setShowConfirm] = useState(false)
 
   const handleToggle = () => {
-    dispatch(toggleTask(task.id));
-  };
+    dispatch(toggleTask(task.id))
+  }
 
   const handleDeleteClick = () => {
-    setShowConfirm(true);
-  };
+    setShowConfirm(true)
+  }
 
   const handleConfirmDelete = () => {
-    dispatch(deleteTask(task.id));
-    setShowConfirm(false);
-  };
+    dispatch(deleteTask(task.id))
+    setShowConfirm(false)
+  }
 
   const handleCancelDelete = () => {
-    setShowConfirm(false);
-  };
+    setShowConfirm(false)
+  }
 
   const handleEdit = () => {
-    dispatch(setEditingTaskId(task.id));
-  };
+    dispatch(setEditingTaskId(task.id))
+  }
 
   return (
-    <li className={`${styles.item} ${task.completed ? styles.completed : ''} ${task.isExpired && !task.completed ? styles.expired : ''}`}>
+    <li
+      className={
+        `${styles.item} ` +
+        (task.completed ? styles.completed : '') +
+        (task.isExpired && !task.completed ? ' ' + styles.expired : '')
+      }
+    >
       <div className={styles.checkbox}>
         <input
           type="checkbox"
@@ -49,17 +55,18 @@ const TaskItem = ({ task }) => {
         </div>
         <TaskTimer deadline={task.deadline} isExpired={task.isExpired || task.completed} />
       </div>
-      <button className={styles.deleteButton} onClick={handleDeleteClick}>Удалить</button>
-      
+      <button className={styles.deleteButton} onClick={handleDeleteClick}>
+        Удалить
+      </button>
       {showConfirm && (
-        <ConfirmPopup 
+        <ConfirmPopup
           message="Вы уверены, что хотите удалить эту задачу?"
           onConfirm={handleConfirmDelete}
           onCancel={handleCancelDelete}
         />
       )}
     </li>
-  );
-};
+  )
+}
 
-export default TaskItem;
+export default TaskItem

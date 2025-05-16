@@ -50,14 +50,15 @@ const todoSlice = createSlice({
   }
 });
 
-export const { 
-  addTask, 
-  toggleTask, 
-  deleteTask, 
-  clearAllTasks, 
-  setEditingTaskId, 
+export const {
+  addTask,
+  toggleTask,
+  deleteTask,
+  clearAllTasks,
+  setEditingTaskId,
   updateTask,
   markTaskAsExpired
 } = todoSlice.actions;
 
 export default todoSlice.reducer;
+

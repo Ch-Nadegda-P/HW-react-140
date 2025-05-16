@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './ConfirmPopup.module.css';
+import React from 'react'
+import styles from './ConfirmPopup.module.css'
 
 const ConfirmPopup = ({ message, onConfirm, onCancel }) => {
   return (
@@ -9,16 +9,22 @@ const ConfirmPopup = ({ message, onConfirm, onCancel }) => {
         <h3 className={styles.title}>Подтверждение</h3>
         <p className={styles.message}>{message}</p>
         <div className={styles.buttons}>
-          <button className={`${styles.button} ${styles.cancelButton}`} onClick={onCancel}>
+          <button
+            className={`${styles.button} ${styles.cancelButton}`}
+            onClick={onCancel}
+          >
             Отмена
           </button>
-          <button className={`${styles.button} ${styles.confirmButton}`} onClick={onConfirm}>
+          <button
+            className={`${styles.button} ${styles.confirmButton}`}
+            onClick={onConfirm}
+          >
             Подтвердить
           </button>
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default ConfirmPopup;
+export default ConfirmPopup

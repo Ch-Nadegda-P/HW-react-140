@@ -1,39 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import styles from './TaskTimer.module.css';
-import { getTimeLeftInMs } from '../../utils/dateUtils';
+import React, { useState, useEffect } from 'react'
+import styles from './TaskTimer.module.css'
+import { getTimeLeftInMs } from '../../utils/dateUtils'
 
 const TaskTimer = ({ deadline, isExpired }) => {
-  const [timeLeft, setTimeLeft] = useState(getTimeLeftInMs(deadline));
+  const [timeLeft, setTimeLeft] = useState(getTimeLeftInMs(deadline))
 
   useEffect(() => {
     if (isExpired) {
-      setTimeLeft(0);
-      return;
+      setTimeLeft(0)
+      return
     }
-
     const timer = setInterval(() => {
-      const newTimeLeft = getTimeLeftInMs(deadline);
-      setTimeLeft(newTimeLeft);
-      
+      const newTimeLeft = getTimeLeftInMs(deadline)
+      setTimeLeft(newTimeLeft)
       if (newTimeLeft <= 0) {
-        clearInterval(timer);
+        clearInterval(timer)
       }
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [deadline, isExpired]);
+    }, 1000)
+    return () => clearInterval(timer)
+  }, [deadline, isExpired])
 
   const formatTime = (ms) => {
-    if (ms <= 0) return { hours: 0, minutes: 0, seconds: 0 };
-    
-    const seconds = Math.floor((ms / 1000) % 60);
-    const minutes = Math.floor((ms / (1000 * 60)) % 60);
-    const hours = Math.floor(ms / (1000 * 60 * 60));
-    
-    return { hours, minutes, seconds };
-  };
+    if (ms <= 0) return { hours: 0, minutes: 0, seconds: 0 }
+    const seconds = Math.floor((ms / 1000) % 60)
+    const minutes = Math.floor((ms / (1000 * 60)) % 60)
+    const hours = Math.floor(ms / (1000 * 60 * 60))
+    return { hours, minutes, seconds }
+  }
 
-  const { hours, minutes, seconds } = formatTime(timeLeft);
+  const { hours, minutes, seconds } = formatTime(timeLeft)
 
   return (
     <div className={`${styles.timer} ${timeLeft <= 0 ? styles.expired : ''}`}>
@@ -47,7 +42,7 @@ const TaskTimer = ({ deadline, isExpired }) => {
         </span>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default TaskTimer;
+export default TaskTimer

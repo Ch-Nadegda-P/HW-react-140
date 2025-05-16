@@ -14,6 +14,8 @@
   width: 100%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
+  font-size: 16px;
+  background: #fff;
 }
 
 .input:focus {
@@ -31,8 +33,12 @@
   margin-bottom: 10px;
 }
 
-.dateInputWrapper {
-  position: relative;
+.dateLabel {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #204060;
+  font-weight: bold;
 }
 
 .dateInput {
@@ -42,6 +48,8 @@
   width: 100%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
+  font-size: 16px;
+  background: #fff;
 }
 
 .dateInput:focus {
@@ -49,30 +57,36 @@
   box-shadow: 0 2px 12px rgba(54, 153, 204, 0.3);
 }
 
-.dateLabel {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 14px;
-  color: #204060;
-  font-weight: bold;
+/* Стилизация календаря react-datepicker */
+.calendar {
+  border-radius: 8px;
+  border: 2px solid #369;
+  box-shadow: 0 4px 16px rgba(54, 153, 204, 0.08);
+  background: #fff;
+  font-family: inherit;
 }
 
-.closeCalendarButton {
-  display: block;
-  margin-top: 8px;
-  background-color: #f0f0f0;
-  color: #333;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 12px;
-  font-size: 12px;
-  cursor: pointer;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.2s;
+.calendar .react-datepicker__header {
+  background-color: #369;
+  color: #fff;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
 }
 
-.closeCalendarButton:hover {
-  background-color: #e0e0e0;
+.calendar .react-datepicker__current-month,
+.calendar .react-datepicker-time__header,
+.calendar .react-datepicker-year-header {
+  color: #fff;
+}
+
+.calendar .react-datepicker__day--selected,
+.calendar .react-datepicker__day--keyboard-selected {
+  background: #204060;
+  color: #fff;
+}
+
+.calendar .react-datepicker__day--today {
+  border-bottom: 2px solid #369;
 }
 
 .button {
@@ -87,18 +101,9 @@
   border: none;
   cursor: pointer;
   margin-top: 5px;
+  transition: background-color 0.2s;
 }
 
 .button:hover {
   background-color: #204060;
-}
-
-
-::-webkit-calendar-picker-indicator {
-  z-index: 1; 
-}
-
-input[type="datetime-local"] {
-  position: relative;
-  z-index: 1; 
 }
