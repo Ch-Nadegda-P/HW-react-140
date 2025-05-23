@@ -3,7 +3,6 @@
   flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
-  width: 100%;
   padding: 0 20px;
 }
 
@@ -11,22 +10,22 @@
   border: none;
   border-radius: 5px;
   padding: 12px 20px;
-  width: 100%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
   transition: box-shadow 0.3s ease;
   font-size: 16px;
-  background: #fff;
+  background: var(--input-bg);
+  color: var(--input-text);
 }
 
 .input:focus {
   outline: none;
-  box-shadow: 0 2px 12px rgba(54, 153, 204, 0.3);
+  box-shadow: 0 2px 12px var(--primary);
 }
 
 .input::placeholder {
   font-size: 12px;
   font-style: italic;
-  color: #666;
+  color: #888;
 }
 
 .dateContainer {
@@ -37,7 +36,7 @@
   display: block;
   margin-bottom: 8px;
   font-size: 14px;
-  color: #204060;
+  color: var(--primary);
   font-weight: bold;
 }
 
@@ -46,28 +45,30 @@
   border-radius: 5px;
   padding: 12px 20px;
   width: 100%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
   transition: box-shadow 0.3s ease;
   font-size: 16px;
-  background: #fff;
+  background: var(--input-bg);
+  color: var(--input-text);
 }
 
 .dateInput:focus {
   outline: none;
-  box-shadow: 0 2px 12px rgba(54, 153, 204, 0.3);
+  box-shadow: 0 2px 12px var(--primary);
 }
 
 /* Стилизация календаря react-datepicker */
 .calendar {
   border-radius: 8px;
-  border: 2px solid #369;
+  border: 2px solid var(--primary);
   box-shadow: 0 4px 16px rgba(54, 153, 204, 0.08);
-  background: #fff;
+  background: var(--popup-bg);
   font-family: inherit;
+  color: var(--popup-text);
 }
 
 .calendar .react-datepicker__header {
-  background-color: #369;
+  background-color: var(--primary);
   color: #fff;
   border-bottom: none;
   border-radius: 8px 8px 0 0;
@@ -81,16 +82,16 @@
 
 .calendar .react-datepicker__day--selected,
 .calendar .react-datepicker__day--keyboard-selected {
-  background: #204060;
+  background: var(--primary-hover);
   color: #fff;
 }
 
 .calendar .react-datepicker__day--today {
-  border-bottom: 2px solid #369;
+  border-bottom: 2px solid var(--primary);
 }
 
 .button {
-  background-color: #369;
+  background-color: var(--primary);
   color: #fff;
   font-size: 14px;
   text-align: center;
@@ -105,5 +106,27 @@
 }
 
 .button:hover {
-  background-color: #204060;
+  background-color: var(--primary-hover);
+}
+
+@media (max-width: 600px) {
+  .form {
+    padding: 0 8px;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .input,
+  .dateInput {
+    padding: 10px 10px;
+    font-size: 15px;
+  }
+  .button {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+  .dateLabel {
+    font-size: 13px;
+  }
+
+  
 }

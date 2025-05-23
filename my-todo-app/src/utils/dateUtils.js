@@ -1,32 +1,20 @@
-import { format, formatDistance, isPast, differenceInMilliseconds } from 'date-fns';
-import { ru } from 'date-fns/locale';
-
-export const formatDate = (date) => {
-  return format(new Date(date), 'dd.MM.yyyy HH:mm', { locale: ru });
-};
-
-export const formatTimeLeft = (deadline) => {
+export function getTimeLeftString(deadline, t) {
   const now = new Date();
-  const deadlineDate = new Date(deadline);
+  const end = new Date(deadline);
+  let diff = Math.floor((end - now) / 1000);
 
-  if (isPast(deadlineDate)) {
-    return 'Время истекло';
+  if (diff <= 0) {
+    return t('time_is_up');
   }
 
-  return formatDistance(deadlineDate, now, {
-    locale: ru,
-    addSuffix: true
-  });
-};
+  const hours = Math.floor(diff / 3600);
+  diff = diff % 3600;
+  const minutes = Math.floor(diff / 60);
+  const seconds = diff % 60;
 
-export const getTimeLeftInMs = (deadline) => {
-  const now = new Date();
-  const deadlineDate = new Date(deadline);
+  return `${t('time_left')}: ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+}
 
-  if (isPast(deadlineDate)) {
-    return 0;
-  }
-
-  return differenceInMilliseconds(deadlineDate, now);
-};
-
+function pad(n) {
+  return n.toString().padStart(2, '0');
+}

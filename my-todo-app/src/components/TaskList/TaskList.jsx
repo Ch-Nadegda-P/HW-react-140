@@ -1,59 +1,24 @@
-import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { clearAllTasks } from '../../store/todoSlice'
-import TaskItem from '../TaskItem/TaskItem'
-import ConfirmPopup from '../ConfirmPopup/ConfirmPopup'
-import styles from './TaskList.module.css'
+import React from 'react';
+import { useSelector } from 'react-redux';
+import TaskItem from '../TaskItem/TaskItem';
+import styles from './TaskList.module.css';
+import { useTranslation } from 'react-i18next';
 
 const TaskList = () => {
-  const tasks = useSelector(state => state.todos.tasks)
-  const dispatch = useDispatch()
-  const [showConfirm, setShowConfirm] = useState(false)
+  const tasks = useSelector(state => state.todos.tasks);
+  const { t } = useTranslation();
 
-  const handleClearAllClick = () => {
-    setShowConfirm(true)
-  }
-
-  const handleConfirmClear = () => {
-    dispatch(clearAllTasks())
-    setShowConfirm(false)
-  }
-
-  const handleCancelClear = () => {
-    setShowConfirm(false)
+  if (tasks.length === 0) {
+    return <div className={styles.empty}>{t('no_tasks')}</div>;
   }
 
   return (
-    <div className={styles.container}>
-      {tasks.length === 0 && (
-        <div className={styles.emptyMessage}>
-          Нет задач. Добавьте новую задачу!
-        </div>
-      )}
-
-      {tasks.length > 0 && (
-        <>
-          <ul className={styles.list}>
-            {tasks.map(task => (
-              <TaskItem key={task.id} task={task} />
-            ))}
-          </ul>
-          <button className={styles.clearButton} onClick={
-          handleClearAllClick
-        }>
-            Очистить список
-          </button>
-        </>
-      )}
-      {showConfirm && (
-        <ConfirmPopup
-          message="Вы уверены, что хотите очистить весь список задач?"
-          onConfirm={handleConfirmClear}
-          onCancel={handleCancelClear}
-        />
-      )}
+    <div className={styles.list}>
+      {tasks.map(task => (
+        <TaskItem key={task.id} task={task} />
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default TaskList
+export default TaskList;

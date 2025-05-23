@@ -1,29 +1,36 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { setEditingTaskId, updateTask } from '../../store/todoSlice'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
-import styles from './EditTaskPopup.module.css'
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setEditingTaskId, updateTask } from '../../store/todoSlice';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import styles from './EditTaskPopup.module.css';
+import { useTranslation } from 'react-i18next';
+import ru from 'date-fns/locale/ru';
+import enGB from 'date-fns/locale/en-GB';
+
+registerLocale('ru', ru);
+registerLocale('en', enGB);
 
 const EditTaskPopup = () => {
-  const dispatch = useDispatch()
-  const editingTaskId = useSelector(state => state.todos.editingTaskId)
-  const tasks = useSelector(state => state.todos.tasks)
-  const [text, setText] = useState('')
-  const [deadline, setDeadline] = useState(new Date())
+  const dispatch = useDispatch();
+  const editingTaskId = useSelector(state => state.todos.editingTaskId);
+  const tasks = useSelector(state => state.todos.tasks);
+  const [text, setText] = useState('');
+  const [deadline, setDeadline] = useState(new Date());
+  const { t, i18n } = useTranslation();
 
-  const editingTask = tasks.find(task => task.id === editingTaskId)
+  const editingTask = tasks.find(task => task.id === editingTaskId);
 
   useEffect(() => {
     if (editingTask) {
-      setText(editingTask.text)
-      setDeadline(new Date(editingTask.deadline))
+      setText(editingTask.text);
+      setDeadline(new Date(editingTask.deadline));
     }
-  }, [editingTask])
+  }, [editingTask]);
 
   const handleClose = () => {
-    dispatch(setEditingTaskId(null))
-  }
+    dispatch(setEditingTaskId(null));
+  };
 
   const handleSave = () => {
     if (text.trim()) {
@@ -31,18 +38,18 @@ const EditTaskPopup = () => {
         id: editingTaskId,
         text: text.trim(),
         deadline: deadline.toISOString(),
-      }))
-      handleClose()
+      }));
+      handleClose();
     }
-  }
+  };
 
-  if (!editingTaskId) return null
+  if (!editingTaskId) return null;
 
   return (
     <>
       <div className={styles.overlay} onClick={handleClose}></div>
       <div className={styles.popup}>
-        <button className={styles.closeButton} onClick={handleClose}></button>
+        <button className={styles.closeButton} onClick={handleClose} aria-label={t('close')}></button>
         <input
           type="text"
           className={styles.input}
@@ -51,7 +58,7 @@ const EditTaskPopup = () => {
           autoFocus
         />
         <div className={styles.dateContainer}>
-          <label className={styles.dateLabel}>Выберите время выполнения:</label>
+          <label className={styles.dateLabel}>{t('choose_deadline')}</label>
           <DatePicker
             selected={deadline}
             onChange={date => setDeadline(date)}
@@ -62,15 +69,16 @@ const EditTaskPopup = () => {
             minDate={new Date()}
             className={styles.dateInput}
             calendarClassName={styles.calendar}
-            locale="ru"
+            locale={i18n.language}
+            timeCaption={t('time')}
           />
         </div>
         <button className={styles.saveButton} onClick={handleSave}>
-          Сохранить
+          {t('save')}
         </button>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default EditTaskPopup
+export default EditTaskPopup;

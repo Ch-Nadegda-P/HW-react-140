@@ -1,0 +1,24 @@
+.switcher {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-weight: 500;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.switcher:hover {
+  background: var(--primary-hover);
+}
+
+@media (max-width: 600px) {
+  .switcher {
+    padding: 6px 8px;
+    font-size: 13px;
+    margin-right: 4px;
+  }
+}

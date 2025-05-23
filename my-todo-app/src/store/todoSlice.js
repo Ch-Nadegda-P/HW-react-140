@@ -1,64 +1,55 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, nanoid } from '@reduxjs/toolkit';
+
+const initialState = {
+  tasks: [],
+  editingTaskId: null,
+};
 
 const todoSlice = createSlice({
   name: 'todos',
-  initialState: {
-    tasks: [],
-    editingTaskId: null,
-  },
+  initialState,
   reducers: {
-    addTask: (state, action) => {
-      state.tasks.push({
-        id: Date.now(),
-        text: action.payload.text,
-        completed: false,
-        deadline: action.payload.deadline,
-        isExpired: false,
-      });
+    addTask: {
+      reducer(state, action) {
+        state.tasks.push({
+          ...action.payload,
+          id: nanoid(),
+          completed: false,
+        });
+      },
+      prepare(task) {
+        return { payload: task };
+      },
     },
-    toggleTask: (state, action) => {
-      const task = state.tasks.find(task => task.id === action.payload);
+    removeTask(state, action) {
+      state.tasks = state.tasks.filter(task => task.id !== action.payload);
+    },
+    updateTask(state, action) {
+      const { id, text, deadline } = action.payload;
+      const task = state.tasks.find(t => t.id === id);
+      if (task) {
+        task.text = text;
+        task.deadline = deadline;
+      }
+    },
+    toggleTaskCompleted(state, action) {
+      const task = state.tasks.find(t => t.id === action.payload);
       if (task) {
         task.completed = !task.completed;
       }
     },
-    deleteTask: (state, action) => {
-      state.tasks = state.tasks.filter(task => task.id !== action.payload);
-    },
-    clearAllTasks: (state) => {
-      state.tasks = [];
-    },
-    setEditingTaskId: (state, action) => {
+    setEditingTaskId(state, action) {
       state.editingTaskId = action.payload;
     },
-    updateTask: (state, action) => {
-      const { id, text, deadline } = action.payload;
-      const task = state.tasks.find(task => task.id === id);
-      if (task) {
-        task.text = text;
-        if (deadline) {
-          task.deadline = deadline;
-        }
-      }
-    },
-    markTaskAsExpired: (state, action) => {
-      const task = state.tasks.find(task => task.id === action.payload);
-      if (task) {
-        task.isExpired = true;
-      }
-    }
-  }
+  },
 });
 
 export const {
   addTask,
-  toggleTask,
-  deleteTask,
-  clearAllTasks,
-  setEditingTaskId,
+  removeTask,
   updateTask,
-  markTaskAsExpired
+  toggleTaskCompleted,
+  setEditingTaskId,
 } = todoSlice.actions;
 
 export default todoSlice.reducer;
-

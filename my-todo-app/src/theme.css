@@ -1,0 +1,30 @@
+:root {
+  --primary: #369;
+  --primary-hover: #204060;
+  --danger: #dc3545;
+  --bg: #f7f9fa;
+  --text: #222;
+  --card-bg: #e5eaf3;
+  --popup-bg: #e5eaf3;
+  --popup-text: #222;
+  --input-bg: #f2f6fa;
+  --input-text: #222;
+  --shadow: 0 1px 6px rgba(54,153,204,0.08);
+}
+
+body.dark-theme {
+  --primary: #3699cc;
+  --primary-hover: #2577a6;
+  --danger: #dc3545;
+  --bg: #1a222b;
+  --text: #f2f6fa;
+  --card-bg: #334559;
+  --popup-bg: #3e5269;
+  --popup-text: #8da3b9;
+  --input-bg: #24313f;
+  --input-text: #f2f6fa;
+  --shadow: 0 1px 6px rgba(54,153,204,0.18);
+}
+
+
+

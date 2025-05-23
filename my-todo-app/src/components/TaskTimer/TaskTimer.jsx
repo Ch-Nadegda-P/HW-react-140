@@ -1,48 +1,29 @@
-import React, { useState, useEffect } from 'react'
-import styles from './TaskTimer.module.css'
-import { getTimeLeftInMs } from '../../utils/dateUtils'
+import React, { useEffect, useState } from 'react';
+import styles from './TaskTimer.module.css';
+import { useTranslation } from 'react-i18next';
+import { getTimeLeftString } from '../../utils/dateUtils';
 
-const TaskTimer = ({ deadline, isExpired }) => {
-  const [timeLeft, setTimeLeft] = useState(getTimeLeftInMs(deadline))
+const TaskTimer = ({ deadline, completed }) => {
+  const { t } = useTranslation();
+  const [timeLeft, setTimeLeft] = useState(getTimeLeftString(deadline, t));
 
   useEffect(() => {
-    if (isExpired) {
-      setTimeLeft(0)
-      return
-    }
-    const timer = setInterval(() => {
-      const newTimeLeft = getTimeLeftInMs(deadline)
-      setTimeLeft(newTimeLeft)
-      if (newTimeLeft <= 0) {
-        clearInterval(timer)
-      }
-    }, 1000)
-    return () => clearInterval(timer)
-  }, [deadline, isExpired])
+    if (completed) return;
+    const interval = setInterval(() => {
+      setTimeLeft(getTimeLeftString(deadline, t));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [deadline, completed, t]);
 
-  const formatTime = (ms) => {
-    if (ms <= 0) return { hours: 0, minutes: 0, seconds: 0 }
-    const seconds = Math.floor((ms / 1000) % 60)
-    const minutes = Math.floor((ms / (1000 * 60)) % 60)
-    const hours = Math.floor(ms / (1000 * 60 * 60))
-    return { hours, minutes, seconds }
+  if (completed) {
+    return <span className={styles.completed}>{t('completed')}</span>;
   }
 
-  const { hours, minutes, seconds } = formatTime(timeLeft)
-
   return (
-    <div className={`${styles.timer} ${timeLeft <= 0 ? styles.expired : ''}`}>
-      {timeLeft <= 0 ? (
-        <span>Время истекло!</span>
-      ) : (
-        <span>
-          Осталось: {hours.toString().padStart(2, '0')}:
-          {minutes.toString().padStart(2, '0')}:
-          {seconds.toString().padStart(2, '0')}
-        </span>
-      )}
-    </div>
-  )
-}
+    <span className={styles.timer}>
+      {timeLeft}
+    </span>
+  );
+};
 
-export default TaskTimer
+export default TaskTimer;

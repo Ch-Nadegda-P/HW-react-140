@@ -13,63 +13,83 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: #e5eaf3;
-  padding: 25px;
+  background-color: var(--popup-bg);
+  color: var(--popup-text);
+  padding: 30px 20px 20px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   border-radius: 8px;
   z-index: 1000;
-  width: 400px;
+  width: 350px;
   max-width: 90%;
   display: flex;
   flex-direction: column;
   gap: 15px;
-}
-
-.title {
-  color: #204060;
-  font-size: 18px;
-  margin-bottom: 10px;
-  text-align: center;
+  align-items: center;
 }
 
 .message {
   font-size: 16px;
-  color: #333;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   text-align: center;
 }
 
-.buttons {
+.actions {
   display: flex;
-  justify-content: space-between;
-  gap: 15px;
+  gap: 50px;
 }
 
-.button {
-  flex: 1;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
+.confirm {
+  width: 100px;
+  background-color: #506f97;
+  color: #fff;
   font-size: 14px;
+  border-radius: 5px;
+  padding: 8px 18px;
+  border: none;
   cursor: pointer;
   transition: background-color 0.2s;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  box-shadow: 0 2px 5px #666;
 }
 
-.cancelButton {
-  background-color: #f0f0f0;
-  color: #333;
+.confirm:hover {
+  background-color: var(--primary-hover);
 }
 
-.cancelButton:hover {
-  background-color: #e0e0e0;
-}
-
-.confirmButton {
-  background-color: #369;
+.cancel {
+  width: 100px;
+  background-color: #bd5b5b;
   color: #fff;
+  font-size: 14px;
+  border-radius: 5px;
+  padding: 8px 18px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 500;
+  box-shadow: 0 2px 5px #666;
 }
 
-.confirmButton:hover {
-  background-color: #204060;
+.cancel:hover {
+  background-color: #c82333;
 }
+
+@media (max-width: 600px) {
+  .popup {
+    width: 95vw;
+    max-width: 95vw;
+    padding: 16px 8px 10px;
+  }
+  .message {
+    font-size: 14px;
+  }
+  .actions {
+    gap: 16px;
+  }
+  .confirm, .cancel {
+    width: 80px;
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+}
+

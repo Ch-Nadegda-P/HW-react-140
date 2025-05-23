@@ -1,0 +1,29 @@
+{
+  "toggle_theme": "Переключить тему",
+  "dark_theme": "Тёмная",
+  "light_theme": "Светлая",
+  "add_task": "Добавить",
+  "edit": "Редактировать",
+  "delete": "Удалить",
+  "save": "Сохранить",
+  "close": "Закрыть",
+  "yes": "Да",
+  "no": "Нет",
+  "enter_task": "Введите задачу...",
+  "choose_deadline": "Выберите дату и время",
+  "no_tasks": "Нет задач",
+  "completed": "Выполнено",
+  "time_is_up": "Время истекло",
+  "less_minute": "меньше минуты",
+  "time_left": "Времени осталось",
+  "days": "{{count}} день",
+  "days_plural": "{{count}} дней",
+  "hours": "{{count}} час",
+  "hours_plural": "{{count}} часов",
+  "minutes": "{{count}} минута",
+  "minutes_plural": "{{count}} минут",
+  "delete_confirm": "Вы уверены, что хотите удалить эту задачу?",
+  "time": "Время"
+
+}
+
