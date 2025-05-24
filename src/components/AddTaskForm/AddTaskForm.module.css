@@ -1,0 +1,132 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 0 20px;
+}
+
+.input {
+  border: none;
+  border-radius: 5px;
+  padding: 12px 20px;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.3s ease;
+  font-size: 16px;
+  background: var(--input-bg);
+  color: var(--input-text);
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: 0 2px 12px var(--primary);
+}
+
+.input::placeholder {
+  font-size: 12px;
+  font-style: italic;
+  color: #888;
+}
+
+.dateContainer {
+  margin-bottom: 10px;
+}
+
+.dateLabel {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.dateInput {
+  border: none;
+  border-radius: 5px;
+  padding: 12px 20px;
+  width: 100%;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.3s ease;
+  font-size: 16px;
+  background: var(--input-bg);
+  color: var(--input-text);
+}
+
+.dateInput:focus {
+  outline: none;
+  box-shadow: 0 2px 12px var(--primary);
+}
+
+/* Стилизация календаря react-datepicker */
+.calendar {
+  border-radius: 8px;
+  border: 2px solid var(--primary);
+  box-shadow: 0 4px 16px rgba(54, 153, 204, 0.08);
+  background: var(--popup-bg);
+  font-family: inherit;
+  color: var(--popup-text);
+}
+
+.calendar .react-datepicker__header {
+  background-color: var(--primary);
+  color: #fff;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+}
+
+.calendar .react-datepicker__current-month,
+.calendar .react-datepicker-time__header,
+.calendar .react-datepicker-year-header {
+  color: #fff;
+}
+
+.calendar .react-datepicker__day--selected,
+.calendar .react-datepicker__day--keyboard-selected {
+  background: var(--primary-hover);
+  color: #fff;
+}
+
+.calendar .react-datepicker__day--today {
+  border-bottom: 2px solid var(--primary);
+}
+
+.button {
+  background-color: var(--primary);
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  text-shadow: 0 0 2px #000;
+  box-shadow: 0 2px 5px #666;
+  border-radius: 5px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 5px;
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  background-color: var(--primary-hover);
+}
+
+@media (max-width: 600px) {
+  .form {
+    padding: 0 8px;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .input,
+  .dateInput {
+    padding: 10px 10px;
+    font-size: 15px;
+  }
+  .button {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+  .dateLabel {
+    font-size: 13px;
+  }
+
+  
+}

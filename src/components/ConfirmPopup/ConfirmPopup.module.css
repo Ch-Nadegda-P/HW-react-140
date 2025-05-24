@@ -1,0 +1,95 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.popup {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--popup-bg);
+  color: var(--popup-text);
+  padding: 30px 20px 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  z-index: 1000;
+  width: 350px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.message {
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  gap: 50px;
+}
+
+.confirm {
+  width: 100px;
+  background-color: #506f97;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 5px;
+  padding: 8px 18px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 500;
+  box-shadow: 0 2px 5px #666;
+}
+
+.confirm:hover {
+  background-color: var(--primary-hover);
+}
+
+.cancel {
+  width: 100px;
+  background-color: #bd5b5b;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 5px;
+  padding: 8px 18px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 500;
+  box-shadow: 0 2px 5px #666;
+}
+
+.cancel:hover {
+  background-color: #c82333;
+}
+
+@media (max-width: 600px) {
+  .popup {
+    width: 95vw;
+    max-width: 95vw;
+    padding: 16px 8px 10px;
+  }
+  .message {
+    font-size: 14px;
+  }
+  .actions {
+    gap: 16px;
+  }
+  .confirm, .cancel {
+    width: 80px;
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+}
+
